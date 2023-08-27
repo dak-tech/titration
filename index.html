@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon calculator</title>
+</head>
+<body>
+    <form>
+        <input type="text" placeholder="Location" name="loc" id="loc">
+        <br>
+        <br>
+        Time:
+        <input type="radio" name="time" id="am" value="9 A.M. - 6 P.M.">
+        <label for="am">9 A.M. - 6 P.M.</label>
+        <input type="radio" name="time" id="pm" value="9 P.M. - 6 A.M.">
+        <label for="pm">9 P.M. - 6 A.M.</label>
+        <br>
+        <br>
+        Molarity:
+        <input type="radio" name="Molarity" id="15" value="15M">
+        <label for="15">15M</label>
+        <input type="radio" name="Molarity" id="20" value="20M">
+        <label for="20">20M</label>
+        <br>
+        <br>
+        <input type="text" placeholder="Titration value" name="ti" id="ti">
+        <br>
+        <br>
+        <input type="button" value="submit" onclick="getvalue()">
+        <br><br><br>
+    </form>
+    <table border="1">
+        <tr>
+            <td>Location</td>
+            <td>Time</td>
+            <td>KOH Molarity</td>
+            <td>Titration Value</td>
+            <td>Carbon captured</td>
+            <td>Carbon Dioxide captured</td>
+        </tr>
+        <tr>
+            <td id="l"></td>
+            <td id="t"></td>
+            <td id="m"></td>
+            <td id="i"></td>
+            <td id="c"></td>
+            <td id="cd"></td>
+        </tr>
+    </table>
+
+    <script>
+        function getvalue(){
+            var loc = document.getElementById("loc").value;
+            var ti = document.getElementById("ti").value;
+            var time = document.querySelector('input[name="time"]:checked').value;
+            var Molarity = document.querySelector('input[name="Molarity"]:checked').value;
+
+            cmass = ti*0.03;
+            co2mass = cmass*44/12;
+
+
+            document.getElementById("l").textContent = loc;
+            document.getElementById("t").textContent = time;
+            document.getElementById("m").textContent = Molarity;
+            document.getElementById("i").textContent = ti;
+            document.getElementById("c").textContent = cmass;
+            document.getElementById("cd").textContent = co2mass;
+
+            dict = {
+                "location": loc,
+                "time": time,
+                "koh_molarity": Molarity,
+                "titration_value": ti,
+                "carbon_captured": cmass,
+                "co2_captured": co2mass,
+            }
+    }
+    </script>
+
+</body>
+</html>
